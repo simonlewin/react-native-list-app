@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableHighlight, Image } from 'react-native';
 
 import contacts from '../assets/contacts.json';
 
@@ -19,15 +19,23 @@ class ListScreen extends Component {
 
   renderItem({item}) {
     return (
-      <View style={styles.container}>
+      <View>
         <TouchableHighlight
           style={styles.btn} 
           onPress={() => this.onPress(item)}
           underlayColor='#e4e4e4'
         >
-          <Text style={styles.text}>
-            {item.name}
-          </Text>
+          <View style={styles.avatarContainer}>
+            <Image style={styles.image} source={{uri: item.picture}}/>
+            <View style={styles.avatarText}>
+              <Text style={styles.nameText}>
+                {item.name}
+              </Text>
+              <Text style={styles.companyText}>
+                {item.company}
+              </Text>
+            </View>
+          </View>
         </TouchableHighlight>
       </View>
     );
@@ -43,7 +51,8 @@ class ListScreen extends Component {
 
   render() {
     return (
-      <FlatList 
+      <FlatList
+        style={styles.container} 
         data={contacts} 
         keyExtractor={this.keyExtractor} 
         renderItem={this.renderItem}
@@ -67,12 +76,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',  
   },
-  text: {
+  avatarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  image: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+  },
+  nameText: {
     color: '#000',
     fontSize: 18,
     paddingLeft: 10,
     paddingRight: 10,
   },
+  companyText: {
+    color: '#a0a0a0',
+    fontSize: 14,
+    paddingLeft: 10,
+    paddingRight: 10,  },
   separator: {
     height: 1, 
     backgroundColor: '#ddd', 

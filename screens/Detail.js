@@ -11,10 +11,12 @@ class DetailScreen extends Component {
     return (
       <View style={styles.container}>
         <Image style={styles.image} source={{uri: picture}} indicator={ProgressBar} />
-        <Text style={styles.text}>{name} is {gender.charAt(0).toUpperCase() + gender.substr(1)}.</Text>
-        <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} lives at {address}</Text>
-        <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} works at {company}</Text>
-        <Text style={styles.text}>{gender === 'male' ? 'His' : 'Her'} favourite film is {filmName}</Text>
+        <View style={styles.textBox}>
+          <Text style={styles.text}>{name} is {gender.charAt(0).toUpperCase() + gender.substr(1)}.</Text>
+          <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} lives at {address}.</Text>
+          <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} works at {company}.</Text>
+          <Text style={styles.text}>{gender === 'male' ? 'His' : 'Her'} favourite film is {filmName}.</Text>
+        </View>
       </View>
     )
   }
@@ -36,9 +38,13 @@ const styles = StyleSheet.create({
     height: 200,
     marginBottom: 10
   },
+  textBox: {
+    alignItems: 'flex-start',
+  },
   text: {
     fontSize: 18,
     marginVertical: 5,
+    textAlign: 'left',
   }
 });
 
