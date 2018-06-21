@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar';
 
 class DetailScreen extends Component {
 
@@ -8,7 +10,7 @@ class DetailScreen extends Component {
   
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={{uri: picture}} />
+        <Image style={styles.image} source={{uri: picture}} indicator={ProgressBar} />
         <Text style={styles.text}>{name} is {gender.charAt(0).toUpperCase() + gender.substr(1)}.</Text>
         <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} lives at {address}</Text>
         <Text style={styles.text}>{gender === 'male' ? 'He' : 'She'} works at {company}</Text>
